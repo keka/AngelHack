@@ -23,7 +23,7 @@ class MeetupApiRequest {
     public function get( $Url ) {
         // Clear error status
         $ret = false;
-        
+
         $options = array(
             CURLOPT_RETURNTRANSFER => true,     // return web page
             CURLOPT_HEADER         => true,    // don't return headers
@@ -32,18 +32,19 @@ class MeetupApiRequest {
             CURLOPT_TIMEOUT        => 120,      // timeout on response
             CURLOPT_HEADER => 0
         );
-//echo $Url;
+		//echo $Url;
         $ch = curl_init( $Url );
         curl_setopt_array( $ch, $options );
         $content = curl_exec( $ch );
         $header  = curl_getinfo( $ch );
         curl_close( $ch );
+        //print "content: ".$content;
         $header['content'] = $content;
 
         $response = new MeetupApiResponse();
         $response->setHttpCode($header['http_code']);
         $response->setResponse($header['content']);
-        
+
 
 
         if( $response->getHttpCode() == '400' ) {
@@ -85,7 +86,7 @@ class MeetupApiRequest {
      *
      * NOTE: The Meetup API contains a list of parameters that are required for
      * each endpoint with a default condition of "any of"
-     * 
+     *
      * @param Array $RequiredList - Names of required parameters
      * @param Array $Parameters - List of provided paramters
      * @return Boolean

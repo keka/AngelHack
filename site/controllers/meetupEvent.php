@@ -20,3 +20,17 @@ $app->get('/meetup/event/:id', function($id) use ($app){
 	*/
 });
 
+$app->get('/meetup/event/:id/rsvps', function($id) use ($app){
+
+
+	$rsvps = MeetupWrapper::getRsvpsByEventId($id);
+
+	print json_encode($rsvps);
+	/*
+	foreach($rsvps as $m)
+	{
+	print_r($m);
+	}
+	*/
+});
+
