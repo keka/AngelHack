@@ -5,7 +5,7 @@ ini_set('display_errors', '1');
 
 require 'lib/Slim/Slim.php';
 
-
+require_once('lib/resource/db.php');
 require_once('lib/angelhack/SmartyView.php');
 
 require_once('lib/meetup/Meetup.php');
