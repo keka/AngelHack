@@ -10,7 +10,35 @@ class MeetupWrapper
 		// yifei '6288702'
 		$events = $m->getEvents( array( 'member_id' => $userId, 'fields' => 'self'));
 
-		return $events;
+		$resp = array();
+		$resp['userId'] = $userId;
+
+		$eventData = array();
+
+		if(count($events) == 0)
+		return;
+		foreach($events as $e)
+		{
+			if($e['yes_rsvp_count'] < 5)
+			continue;
+			$newEvent = array();
+			$newEvent['id'] = $e['id'];
+			$newEvent['status'] = $e['status'];
+			$newEvent['url'] = $e['event_url'];
+			$newEvent['yes_rsvp_count'] = $e['yes_rsvp_count'];
+			$newEvent['maybe_rsvp_count'] = $e['maybe_rsvp_count'];
+			$newEvent['date'] = date(DATE_W3C, $e['time']/1000);
+			$newEvent['venue'] = $e['venue'];
+			$newEvent['name'] = $e['name'];
+			$newEvent['self'] = $e['self'];
+
+			$eventData[] = $newEvent;
+
+			//print_r($e);
+			//echo $e['id']."   : ".$e['name'] . " at " . date(DATE_W3C, $e['time']/1000) . "<br>";
+		}
+		$resp['events'] =$eventData;
+		return $resp;
 
 	}
 
@@ -44,6 +72,21 @@ class MeetupWrapper
 
 	}
 
+	public static function getEventInfoById($eventId)
+	{
+		$m = new MeetupEvents();
+		$event = $m->getEvent($eventId, array()) ;
+
+
+		//echo $event['name'] . " at " . $event['venue']['name'];
+
+
+		$resp = array();
+		$resp['event'] = $event;
+
+		return $resp;
+
+	}
 
 
 

@@ -4,14 +4,9 @@
 $app->get('/meetup/event/:id', function($id) use ($app){
 
 
-	$m = new MeetupEvents();
-	$event = $m->getEvent($id, array()) ;
+	$event = MeetupWrapper::getEventInfoById($id);
 
-	print_r($event);
-
-	echo $event['name'] . " at " . $event['venue']['name'];
-
-
+	print json_encode($event);
 	/*
 	foreach($members as $m)
 	{

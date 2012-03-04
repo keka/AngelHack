@@ -4,6 +4,9 @@
 
 	{literal}
 	<script>
+	{/literal}
+	var BASEURL = "{#BASEURL#}";
+	{literal}
 	Object.size = function(obj) {
 		    var size = 0, key;
 		    for (key in obj) {
@@ -13,13 +16,15 @@
 		};
 	</script>
 	{/literal}
-	<script src="js/jquery/jquery-1.7.1.min.js"></script>
-	<script src="js/underscore.js"></script>
-	<script src="js/backbone.js"></script>
-	<script src="js/models/events.js"></script>
-	<script src="js/views/events.js"></script>
+	<script src="{#BASEURL#}/js/jquery/jquery-1.7.1.min.js"></script>
+	<script src="{#BASEURL#}/js/underscore.js"></script>
+	<script src="{#BASEURL#}/js/backbone.js"></script>
+	<script src="{#BASEURL#}/js/models/events.js"></script>
+	<script src="{#BASEURL#}/js/views/events.js"></script>
+	<script src="{#BASEURL#}/js/models/rsvps.js"></script>
+	<script src="{#BASEURL#}/js/views/rsvps.js"></script>
 
-	<script src="js/main.js"></script>
+
 
 
 

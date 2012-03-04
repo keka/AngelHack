@@ -208,8 +208,8 @@ class Slim {
             if ( $sessionHandler instanceof Slim_Session_Handler ) {
                 $sessionHandler->register($this);
             }
-            session_cache_limiter(false); 
-            session_start();
+            session_cache_limiter(false);
+            @session_start();
         }
 
         //Setup view with flash messaging

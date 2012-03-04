@@ -5,7 +5,10 @@ var Event = Backbone.Model.extend({
 		},
 		url : function()
 		{
-			return '/meetup/event/' + this.get('id');
+			return BASEURL+'/meetup/event/' + this.get('id');
+		},
+		parse: function(response) {
+			return response.event;
 		}
 	});
 
@@ -17,7 +20,7 @@ var Event = Backbone.Model.extend({
 	},
 	url : function()
 	{
-		return 'meetup/user/' + this.id + '/events/';
+		return BASEURL+'/meetup/user/' + this.id + '/events/';
 	},
 	parse: function(response) {
 		return response.events;
